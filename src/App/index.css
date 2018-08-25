@@ -1,0 +1,149 @@
+:local .App {
+}
+
+:local .DateTime,
+:local .LastMotion,
+:local .MotionsHourly {
+  position: absolute;
+  width: 100%;
+}
+
+:local .DateTime {
+  top: 0;
+}
+
+:local .LastMotion {
+  top: 0;
+}
+
+:local .MotionsHourly {
+  font-size: 0.2em;
+  bottom: 0;
+  max-height: 50%;
+}
+
+@media (orientation: landscape) {
+  :local .App {
+    padding: 0.5em 0.5em;
+    height: calc(100% - 1em);
+    width: calc(100% - 1em);
+    font-size: 2rem;
+  }
+
+  :local .DateTime,
+  :local .LastMotion {
+    width: 50%;
+  }
+
+  :local .DateTime {
+    left: 0;
+    line-height: 1.2em;
+  }
+
+  :local .LastMotion {
+    font-size: 0.7em;
+    right: 0;
+    padding: 0.5em 0.5em;
+  }
+}
+
+@media (orientation: landscape) and (min-width: 320px) {
+  :local .App { font-size: 4rem; }
+}
+@media (orientation: landscape) and (min-width: 375px) {
+  :local .App { font-size: 6rem; }
+}
+@media (orientation: landscape) and (min-width: 520px) {
+  :local .App { font-size: 9rem; }
+}
+@media (orientation: landscape) and (min-width: 768px) {
+  :local .App { font-size: 12rem; }
+}
+@media (orientation: landscape) and (min-width: 800px) {
+  :local .App { font-size: 14rem; }
+}
+@media (orientation: landscape) and (min-width: 1080px) {
+  :local .App { font-size: 16rem; }
+}
+@media (orientation: landscape) and (min-width: 1280px) {
+  :local .App { font-size: 18rem; }
+}
+@media (orientation: landscape) and (min-width: 1440px) {
+  :local .App { font-size: 20rem; }
+}
+@media (orientation: landscape) and (min-width: 1920px) {
+  :local .App { font-size: 22rem; }
+}
+@media (orientation: landscape) and (min-width: 2160px) {
+  :local .App { font-size: 24rem; }
+}
+
+@media (orientation: portrait) {
+  :local .App {
+    padding: 1em 0.5em;
+    height: calc(100% - 2em);
+    width: calc(100% - 1em);
+    font-size: 4rem;
+  }
+
+  :local .LastMotion {
+    font-size: 0.83em;
+    top: 50%;
+    margin-top: -1em !important;
+  }
+}
+
+@media (orientation: portrait) and (min-width: 320px) {
+  :local .App { font-size: 6rem; }
+}
+@media (orientation: portrait) and (min-width: 375px) {
+  :local .App { font-size: 8rem; }
+}
+@media (orientation: portrait) and (min-width: 520px) {
+  :local .App { font-size: 11rem; }
+}
+@media (orientation: portrait) and (min-width: 768px) {
+  :local .App { font-size: 14rem; }
+}
+@media (orientation: portrait) and (min-width: 800px) {
+  :local .App { font-size: 16rem; }
+}
+@media (orientation: portrait) and (min-width: 1080px) {
+  :local .App { font-size: 18rem; }
+}
+@media (orientation: portrait) and (min-width: 1280px) {
+  :local .App { font-size: 22rem; }
+}
+@media (orientation: portrait) and (min-width: 1440px) {
+  :local .App { font-size: 27rem; }
+}
+@media (orientation: portrait) and (min-width: 1920px) {
+  :local .App { font-size: 31rem; }
+}
+@media (orientation: portrait) and (min-width: 2160px) {
+  :local .App { font-size: 36rem; }
+}
+
+:local .container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+:local .clear {
+  background: #f8ce6d;
+  background: radial-gradient(ellipse at center, #f8ce6d 0%, #f4aa00 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8ce6d', endColorstr='#f4aa00', GradientType=1 );
+}
+
+:local .default {
+  background: #3b6784;
+  background: radial-gradient(ellipse at center, #3b6784 0%, #254255 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b6784', endColorstr='#254255', GradientType=1 );
+}
+
+:local .weekend {
+  background: #648788;
+  background: radial-gradient(ellipse at center, #648788 0%, #435657 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#648788', endColorstr='#435657', GradientType=1 );
+}

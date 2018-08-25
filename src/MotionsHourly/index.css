@@ -1,0 +1,44 @@
+:local .MotionsHourly {
+  width: 100%;
+}
+
+:local .MotionsHourly text {
+  fill: rgba(255, 255, 255, 0.7);
+}
+
+:local .MotionsHourly rect {
+  stroke: none;
+  fill: rgba(255, 255, 255, 0.5);
+}
+
+:local .MotionsHourly line {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 2;
+}
+
+:local .legend {
+}
+
+:local .legend line {
+  stroke: rgba(255, 255, 255, 0.3);
+}
+
+:local .motions {
+}
+
+:local .motions .rect {
+  fill: rgba(255, 255, 255, 0.2);
+}
+
+:local .motions .rectActive {
+  fill: rgba(255, 255, 255, 0.5);
+}
+
+:local .small {
+  font-size: 0.6em;
+}
+
+:local .timeMarker {
+  stroke: rgba(255, 255, 255, 1);
+}

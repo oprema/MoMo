@@ -1,0 +1,17 @@
+{
+  "hourly": [
+    {"hour": "6", "count": "0"},
+    {"hour": "9", "count": "3"},
+    {"hour": "12", "count": "5"},
+    {"hour": "15", "count": "4"},
+    {"hour": "18", "count": "6"},
+    {"hour": "21", "count": "0"}
+  ],
+
+  "last": {
+  	"date": "2018-06-02",
+  	"time": "13:04",
+  	"timeout": "6",
+    "active": "true"
+  }
+}

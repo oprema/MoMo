@@ -1,0 +1,16 @@
+:local .lng {
+  padding-right: 30px;
+  display: inline-block;
+}
+
+:local .flag {
+  padding-left: 5px;
+  width: 10%;
+  height: 10%;
+  z-index: 5;
+}
+
+:local input[type=image]:disabled {
+  opacity: 0.4;
+}
+

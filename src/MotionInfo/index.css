@@ -1,0 +1,28 @@
+:local .MotionInfo {
+  position: absolute;
+  top: 0;
+  left: 33%;
+  width: 75%;
+  height: 100%;
+}
+
+:local ul {
+  list-style-type: none;
+}
+
+:local .status {
+  font-weight: bold;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white !important;
+}
+
+:local .ok {
+  color: #31f607;
+}
+
+:local .err {
+  color: #fc4040;
+}
+
+:local .warn {
+  color: #ff9f00;
+}

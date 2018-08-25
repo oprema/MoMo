@@ -1,0 +1,15 @@
+:local .LastMotion {
+  text-align: center;
+}
+
+:local .timeout {
+  font-size: 0.7em !important;
+  margin-top: -0.2em;
+  vertical-align: middle;
+}
+
+:local .last {
+  font-size: 0.23em !important;
+  opacity: 0.8;
+  text-align: left;
+}
