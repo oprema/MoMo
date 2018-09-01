@@ -88,11 +88,17 @@ def get_last():
   last = query_db("SELECT lastT, lastD FROM _last WHERE id = 1", one=True)
   lastT, lastD = last
 
+  mins = int(os.getenv('ALERT_AFTER_MINS'))
+  alert_hm = "%02d:%02d" % (mins/60, mins%60) 
+  now = datetime.now()
+  active = get_active(now)
+  app.logger.debug('Last: %s %s, timeout: %s' % (lastD, lastT, alert_hm))
+
   return {
     'date': lastD,
     'time': lastT,
-    'timeout': '6',
-    'active': 'true'
+    'timeout': alert_hm, # in hours abd mins
+    'active': str(active)  # active state
   }
 
 def h_index(h):
@@ -108,24 +114,31 @@ def h_index(h):
     return 4
   return -1
 
-def update_motions(lastIndex):
-  now = datetime.now()
-  h = int(now.strftime('%H'))
+def clear_motions(lastIndex):
+  index = h_index(int(datetime.now().strftime('%H')))
+  if index == lastIndex:
+    return index
 
   with app.app_context():
     motions = get_motions()
 
-  index = h_index(h)
-  if index >= 0:
-    if lastIndex != index:
-      lastIndex = index
-      motions[index] = 0
-
-    motions[index] += 1
+  motions[index] = 0
+  app.logger.debug('Clear motions: %s' % motions[0:5])
 
   with app.app_context():
     replace_db('_motions', ['id', 'motions'], [1, ','.join([str(i) for i in motions])])
-  return lastIndex
+  return index
+
+def update_motions():
+  index = h_index(int(datetime.now().strftime('%H')))
+  with app.app_context():
+    motions = get_motions()
+
+  if index >= 0:
+    motions[index] += 1
+    with app.app_context():
+      replace_db('_motions', ['id', 'motions'], [1, ','.join([str(i) for i in motions])])
+    app.logger.debug('Update motions: %s' % motions[0:5])
 
 def get_motions():
   motions = query_db("SELECT motions FROM _motions WHERE id = 1", one=True)
@@ -134,8 +147,6 @@ def get_motions():
     motions = [0, 0, 0, 0, 0, 0]
   else:
     motions = list(map(int, motions[0].split(',')))
-
-  app.logger.debug('Motions list: %s' % motions[:])
   return motions
 
 def send_email(to, subject, body):
@@ -177,7 +188,7 @@ def get_active(now):
   return True if now > _from and now < _to else False
 
 def pir_loop(q):
-  lastTrigger, lastIndex, cnt = datetime(1970, 1, 1), -1, 0
+  lastTrigger, lastIndex, cnt = datetime(1970, 1, 1), 0, 0
   warn_sent, alert_sent = True, True
 
   GPIO.add_event_detect(GPIO_PIR, GPIO.RISING)
@@ -194,9 +205,9 @@ def pir_loop(q):
 
       # obey motion timeout
       if lastTrigger + timedelta(0, PIR_TIMEOUT) < trigger:
-        app.logger.debug("New motion detected and registered")
+        app.logger.debug("** New motion detected and registered")
         update_last()
-        lastIndex = update_motions(lastIndex)
+        update_motions()
         lastTrigger = trigger
         warn_sent, alert_sent = False, False
       else:
@@ -204,6 +215,9 @@ def pir_loop(q):
         app.logger.debug("New motion detected but not registered")
     else:
       now = datetime.now()
+      # reset motions counter when in new duration segment
+      lastIndex = clear_motions(lastIndex)
+
       active = get_active(now)
       if active:
         if not warn_sent and (lastTrigger + timedelta(0, warn_delay) < now):
@@ -240,6 +254,7 @@ def hourly():
     # Initialize a list of hourly motions
     motionList = []
     motions = get_motions()
+    app.logger.debug('Get motions: %s' % motions[0:5])
 
     # create a instances for filling up employee list
     for i in range(0, 6):

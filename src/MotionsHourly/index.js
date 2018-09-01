@@ -110,7 +110,7 @@ class MotionsHourly extends Component {
             y={LEGEND_LINE_PX + 110}
             textAnchor="left"
           >
-            The Carroll Cave
+            {process.env.REACT_APP_LOCATION_NAME || 'MoMo'}
           </text>
         </g>
 
@@ -129,7 +129,7 @@ class MotionsHourly extends Component {
               >
                 <title
                   className={styles.title}>
-                  Carrolls {count} mal gesichtet
+                  {count} Motions
                 </title>
               </rect>
             </g>

@@ -4,3 +4,4 @@ threads = 6
 loglevel = 'debug'
 accesslog = '/home/pi/gunicorn-access.log'
 errorlog = '/home/pi/gunicorn.log'
+timeout = 120

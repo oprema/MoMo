@@ -39,7 +39,7 @@ class LastMotion extends Component {
 
   getTimeout(timeout) {
     const parts = timeout.split(':');
-    let timeoutMins = 6 * 60; // 6h
+    let timeoutMins = 6 * 60; // default: 6h
 
     if (parts.length === 1) {
       timeoutMins = parseInt(parts[0], 10) * 60;

@@ -73,4 +73,3 @@ Finally add the lines below to start client and server in your crontab with cron
 ## Thanks to
 Dan Conrad for his DayLight App which was a really good starter for MoMo. You can see it here: [https://github.com/danmconrad/daylight.git](https://github.com/danmconrad/daylight.git).
 
-
